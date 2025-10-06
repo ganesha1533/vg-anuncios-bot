@@ -69,7 +69,7 @@ npm start
 ## 🤝 **Suporte**
 
 - 📧 Email: suporte@vganuncios.com
-- 💬 WhatsApp: [Clique aqui](https://wa.me/5511999999999)
+- 💬 WhatsApp: [Clique aqui](https://wa.me/5516981758604)
 - 🐛 Issues: [GitHub Issues](https://github.com/ganesha1533/vg-anuncios-bot/issues)
 
 ## 📄 **Licença**
