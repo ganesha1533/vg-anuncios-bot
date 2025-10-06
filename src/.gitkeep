@@ -1,0 +1,8 @@
+# Pasta src/ - Código fonte do VG Anúncios Bot
+
+Esta pasta contém todo o código fonte do bot:
+- config.js - Configurações principais
+- connection.js - Conexão WhatsApp
+- commands/ - Todos os comandos do bot
+- handlers/ - Processadores de eventos
+- utils/ - Utilitários e helpers
