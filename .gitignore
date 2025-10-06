@@ -1,0 +1,57 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# WhatsApp Auth Data (IMPORTANTE - Não subir sessões)
+assets/auth/
+assets/auth/*
+*.session
+*.json.backup
+
+# Arquivos temporários
+assets/temp/
+temp/
+tmp/
+
+# Database backups (opcional)
+database/backups/
+backup-*/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Environment variables
+.env
+.env.local
+
+# PM2 
+.pm2/
+
+# Cache
+.cache/
+.tmp/
+
+# Arquivos específicos do bot que NÃO devem ser compartilhados
+database/owner.json
+database/active-groups.json
+database/activation-codes.json
+database/users.json
+database/welcome.json
+
+# Manter apenas estruturas vazias
+!database/.gitkeep
+!assets/auth/.gitkeep
+!assets/temp/.gitkeep
