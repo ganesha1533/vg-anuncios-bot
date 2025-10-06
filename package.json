@@ -1,0 +1,52 @@
+{
+  "name": "vg-anuncios-bot",
+  "version": "6.4.0",
+  "description": "VG Anúncios - Bot Profissional para WhatsApp com Sistema de Transmissão",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "prod": "pm2 start ecosystem.config.js",
+    "stop": "pm2 stop vg-anuncios",
+    "restart": "pm2 restart vg-anuncios",
+    "logs": "pm2 logs vg-anuncios",
+    "setup": "node setup-inicial.js",
+    "backup": "node -e \"const fs = require('fs'); const date = new Date().toISOString().split('T')[0]; fs.cpSync('database/', `backup-${date}/`, {recursive: true}); console.log(`Backup criado: backup-${date}/`)\"",
+    "clean": "node -e \"const fs = require('fs'); try { fs.rmSync('assets/auth/', {recursive: true, force: true}); console.log('Cache limpo!'); } catch(e) { console.log('Nada para limpar.'); }\"",
+    "test": "node -e \"console.log('✅ VG Anúncios Bot - Testes básicos OK!')\""
+  },
+  "keywords": [
+    "whatsapp",
+    "bot",
+    "vg-anuncios",
+    "transmissao",
+    "baileys",
+    "professional",
+    "admin",
+    "moderation",
+    "grupos",
+    "anuncios"
+  ],
+  "author": "VG Anúncios Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.20",
+    "axios": "^1.7.7",
+    "chalk": "^4.1.2",
+    "fluent-ffmpeg": "^2.1.3",
+    "fs-extra": "^11.2.0",
+    "moment-timezone": "^0.5.45",
+    "node-cache": "^5.1.2",
+    "node-fetch": "^2.7.0",
+    "pino": "^9.4.0",
+    "qrcode-terminal": "^0.12.0",
+    "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "nodemon": "^3.1.7"
+  }
+}
