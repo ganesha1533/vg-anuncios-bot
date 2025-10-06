@@ -1,0 +1,9 @@
+# Pasta database/ - Banco de dados do bot
+
+Esta pasta armazena todos os dados do bot:
+- owner.json - Dados do proprietário (criado pelo setup)
+- active-groups.json - Grupos ativos
+- users.json - Dados dos usuários
+- welcome.json - Mensagens de boas-vindas
+
+⚠️ IMPORTANTE: Estes arquivos são criados automaticamente durante o uso do bot.
