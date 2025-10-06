@@ -1,16 +1,34 @@
 /**
- * VG Anúncios Bot - Entry Point
- * 
- * Bot WhatsApp Profissional para transmissão e gerenciamento de grupos
- * 
- * @version 6.4.0
- * @author VG Anúncios Team
+ * VG Anúncios Bot - Bot profissional para WhatsApp
  */
 
 const fs = require('fs');
 const path = require('path');
+const readline = require('readline');
 
-console.log(`
+// Remover warning inseguro do TLS
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = undefined;
+
+// Função para perguntar no terminal
+function question(query) {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  return new Promise((resolve) => {
+    rl.question(query, (answer) => {
+      rl.close();
+      resolve(answer);
+    });
+  });
+}
+
+async function startBot() {
+  try {
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
+    console.log(`
 ╔══════════════════════════════════════════════════════════╗
 ║                🤖 VG ANÚNCIOS BOT 🤖                    ║
 ║                                                          ║
@@ -19,48 +37,40 @@ console.log(`
 ╚══════════════════════════════════════════════════════════╝
 `);
 
-// Verificar se a configuração existe
-const configPath = path.join(__dirname, 'src', 'config.js');
-
-if (!fs.existsSync(configPath)) {
-    console.log(`
+    // Verificar se a configuração existe
+    const configPath = path.join(__dirname, 'src', 'config.js');
+    
+    if (!fs.existsSync(configPath)) {
+        console.log(`
 ❌ CONFIGURAÇÃO NÃO ENCONTRADA!
 
 🔧 Execute primeiro a configuração inicial:
-   npm run setup
-
-   OU
-
    node setup-inicial.js
 
 📋 Depois inicie o bot novamente:
    npm start
-`);
-    process.exit(1);
+        `);
+        process.exit(1);
+    }
+
+    console.log("🔄 Iniciando conexão com WhatsApp...");
+    
+    // Carregar módulos principais
+    const { connect } = require("./src/connection");
+    const { setupOwner } = require("./src/setup");
+    const { successLog, errorLog, infoLog } = require("./src/utils/logger");
+
+    // Configuração inicial do bot
+    await setupOwner();
+
+    // Conectar ao WhatsApp
+    await connect();
+
+  } catch (error) {
+    console.error(`❌ Erro: ${error.message}`);
+    console.log("🔄 Tentando novamente em 5 segundos...");
+    setTimeout(() => startBot(), 5000);
+  }
 }
 
-// Carregar configuração
-const config = require('./src/config.js');
-
-console.log(`
-✅ Configuração carregada!
-👤 Dono: ${config.OWNER_NAME}
-⚡ Prefixo: ${config.PREFIX}
-
-🔄 Iniciando conexão com WhatsApp...
-`);
-
-// Simular inicialização (substitua pela implementação real)
-setTimeout(() => {
-    console.log(`
-🎉 VG ANÚNCIOS BOT INICIADO COM SUCESSO!
-
-📱 Conecte seu WhatsApp escaneando o QR Code
-💡 Use ${config.PREFIX}menu para ver os comandos
-🏴‍☠️ Bot funcionando perfeitamente!
-    `);
-}, 2000);
-
-// Implementação real do bot seria aqui...
-// require('./src/connection.js');
-// require('./src/loader.js');
+startBot();
