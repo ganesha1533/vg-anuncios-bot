@@ -99,7 +99,7 @@ function loadCommands() {
     
     // Carregar comandos do admin
     const adminPath = path.join(commandsPath, "admin");
-    if (fs.existsExists(adminPath)) {
+    if (fs.existsSync(adminPath)) {
       const adminFiles = fs.readdirSync(adminPath).filter(file => file.endsWith('.js'));
       
       for (const file of adminFiles) {
