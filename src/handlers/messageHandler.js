@@ -217,15 +217,19 @@ async function detectGroupLinks(socket, message, messageText) {
     const links = messageText.match(linkRegex);
     
     if (links && links.length > 0) {
-      // Importar função de coleta
-      const coletarLinksCommand = require('../commands/user/coletarlinks');
-      
-      // Processar cada link encontrado
-      for (const link of links) {
-        if (link.includes('chat.whatsapp.com/')) {
-          // É um link de grupo do WhatsApp
-          coletarLinksCommand.coletarAutomatico(socket, message, link);
+      // Tentar importar função de coleta com segurança
+      try {
+        const coletarLinksCommand = require('../commands/user/coletarlinks');
+        
+        // Processar cada link encontrado
+        for (const link of links) {
+          if (link.includes('chat.whatsapp.com/')) {
+            // É um link de grupo do WhatsApp
+            coletarLinksCommand.coletarAutomatico(socket, message, link);
+          }
         }
+      } catch (importError) {
+        console.log('[COLETOR] Comando coletarlinks não encontrado, pulando coleta automática');
       }
     }
   } catch (error) {
