@@ -17,8 +17,8 @@ module.exports = {
   DATABASE_DIR: path.resolve(__dirname, "..", "database"),
   ASSETS_DIR: path.resolve(__dirname, "..", "assets"),
   
-  // Configurações do proprietário (será configurado pelo setup)
-  OWNER_NUMBER: "", // Será definido pelo setup-inicial.js
+    // Configurações do proprietário
+  OWNER_NUMBER: "5516981758604", // SERÁ CONFIGURADO PELO SETUP
   
   // Configurações de prefixo
   DEFAULT_PREFIX: "/",
